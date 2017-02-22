@@ -15,11 +15,11 @@ spec:
             "image": "monkeylittle/jenkins:1.0.0",
             "imagePullPolicy": "IfNotPresent",
             "command": ["bash", "-c", "
-              while [ ! -e /var/jenkins_home/ssh_config -e ! -e /var/jenkins_home/ssh_key ]; do sleep 1; done;\n
+              while [ ! -e /var/jenkins_home/ssh_config -o ! -e /var/jenkins_home/ssh_key ]; do sleep 1; done;\n
               mkdir -p /var/jenkins_home/.ssh\n
               cp /var/jenkins_home/ssh_config/* /var/jenkins_home/.ssh/\n
               cp /var/jenkins_home/ssh_key/* /var/jenkins_home/.ssh/\n
-              chmod 600 /var/jenkins_home/.ssh/id_jenkins*\n
+              chmod 400 /var/jenkins_home/.ssh/id_jenkins*\n
               ssh-keyscan github.com >> /var/jenkins_home/.ssh/known_hosts\n
               ssh-keyscan ssh.github.com >> /var/jenkins_home/.ssh/known_hosts
             "],
